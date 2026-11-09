@@ -1,0 +1,128 @@
+== chat0
+  c1 vs c1b: tokens part at 16
+  noise sgl score~score2     steps= 128 top1=1.0000 top5=1.0000 dlp p50=0.0000 p90=0.0000 max=0.0000 kl_mean=0.00e+00 kl_max=0.00e+00 flips=
+  noise sgl dec~score_dec    steps= 128 top1=0.9453 top5=0.9500 dlp p50=1.3125 p90=2.7500 max=4.2205 kl_mean=5.90e-02 kl_max=2.30e+00 flips=34(m0.50),67(m0.25),69(m0.25),83(m0.50),92(m2.50),117(m2.00),123(m2.50)
+  hs c1~sgl                  steps= 128 top1=0.9688 top5=0.9328 dlp p50=1.2943 p90=2.7370 max=4.7542 kl_mean=3.94e-02 kl_max=6.02e-01 flips=16(m0.50),20(m1.25),68(m0.25),73(m1.25)
+  hs c1b~sgl                 steps=  17 top1=0.9412 top5=0.9647 dlp p50=1.6374 p90=2.7456 max=3.0315 kl_mean=1.45e-02 kl_max=1.94e-01 flips=16(m0.50)
+  hs c1~c1b                  steps=  17 top1=0.9412 top5=0.9529 dlp p50=1.0074 p90=2.2830 max=3.0745 kl_mean=1.84e-02 kl_max=3.04e-01 flips=16(m0.42)
+  greedy ids hs vs sgl: first difference at 16 of 128
+== chat1
+  c1 vs c1b: tokens part at None
+  noise sgl score~score2     steps= 128 top1=1.0000 top5=1.0000 dlp p50=0.0000 p90=0.0000 max=0.0000 kl_mean=0.00e+00 kl_max=0.00e+00 flips=
+  noise sgl dec~score_dec    steps= 128 top1=0.9766 top5=0.9469 dlp p50=0.5625 p90=0.9941 max=2.8745 kl_mean=2.88e-03 kl_max=6.09e-02 flips=60(m0.25),72(m0.00),116(m0.00)
+  hs c1~sgl                  steps= 128 top1=0.9609 top5=0.9500 dlp p50=0.6412 p90=1.1392 max=3.0742 kl_mean=4.72e-03 kl_max=9.00e-02 flips=15(m0.50),19(m0.25),62(m0.00),63(m0.00),106(m0.00)
+  hs c1b~sgl                 steps= 128 top1=0.9609 top5=0.9500 dlp p50=0.6412 p90=1.1392 max=3.0742 kl_mean=4.72e-03 kl_max=9.00e-02 flips=15(m0.50),19(m0.25),62(m0.00),63(m0.00),106(m0.00)
+  hs c1~c1b                  steps= 128 top1=1.0000 top5=1.0000 dlp p50=0.0000 p90=0.0000 max=0.0000 kl_mean=0.00e+00 kl_max=0.00e+00 flips=
+  greedy ids hs vs sgl: first difference at 15 of 128
+== chat2
+  c1 vs c1b: tokens part at None
+  noise sgl score~score2     steps= 128 top1=1.0000 top5=1.0000 dlp p50=0.0000 p90=0.0000 max=0.0000 kl_mean=0.00e+00 kl_max=0.00e+00 flips=
+  noise sgl dec~score_dec    steps= 128 top1=1.0000 top5=0.9547 dlp p50=0.6250 p90=1.1090 max=2.8750 kl_mean=1.27e-03 kl_max=6.55e-02 flips=
+  hs c1~sgl                  steps= 128 top1=1.0000 top5=0.9219 dlp p50=0.7088 p90=1.4678 max=4.6579 kl_mean=1.45e-03 kl_max=5.23e-02 flips=
+  hs c1b~sgl                 steps= 128 top1=1.0000 top5=0.9219 dlp p50=0.7088 p90=1.4678 max=4.6579 kl_mean=1.45e-03 kl_max=5.23e-02 flips=
+  hs c1~c1b                  steps= 128 top1=1.0000 top5=1.0000 dlp p50=0.0000 p90=0.0000 max=0.0000 kl_mean=0.00e+00 kl_max=0.00e+00 flips=
+  greedy ids hs vs sgl: first difference at None of 128
+== chat3
+  c1 vs c1b: tokens part at None
+  noise sgl score~score2     steps=  55 top1=1.0000 top5=1.0000 dlp p50=0.0000 p90=0.0000 max=0.0000 kl_mean=0.00e+00 kl_max=0.00e+00 flips=
+  noise sgl dec~score_dec    steps=  55 top1=0.9818 top5=0.9345 dlp p50=0.8750 p90=1.9998 max=4.4999 kl_mean=6.07e-03 kl_max=2.68e-01 flips=49(m0.75)
+  hs c1~sgl                  steps=  55 top1=1.0000 top5=0.9382 dlp p50=0.9684 p90=1.8676 max=3.0375 kl_mean=2.08e-03 kl_max=9.50e-02 flips=
+  hs c1b~sgl                 steps=  55 top1=1.0000 top5=0.9382 dlp p50=0.9684 p90=1.8676 max=3.0375 kl_mean=2.08e-03 kl_max=9.50e-02 flips=
+  hs c1~c1b                  steps=  55 top1=1.0000 top5=1.0000 dlp p50=0.0000 p90=0.0000 max=0.0000 kl_mean=0.00e+00 kl_max=0.00e+00 flips=
+  greedy ids hs vs sgl: first difference at 49 of 55
+== chat4
+  c1 vs c1b: tokens part at None
+  noise sgl score~score2     steps=  36 top1=1.0000 top5=1.0000 dlp p50=0.0000 p90=0.0000 max=0.0000 kl_mean=0.00e+00 kl_max=0.00e+00 flips=
+  noise sgl dec~score_dec    steps=  35 top1=0.9429 top5=0.8914 dlp p50=1.3775 p90=2.8750 max=3.5000 kl_mean=7.10e-02 kl_max=9.82e-01 flips=2(m3.50),30(m1.50)
+  hs c1~sgl                  steps=  36 top1=0.9444 top5=0.9167 dlp p50=1.7796 p90=2.3568 max=3.5476 kl_mean=4.85e-02 kl_max=5.57e-01 flips=2(m0.75),9(m1.62)
+  hs c1b~sgl                 steps=  36 top1=0.9444 top5=0.9167 dlp p50=1.7796 p90=2.3568 max=3.5476 kl_mean=4.85e-02 kl_max=5.57e-01 flips=2(m0.75),9(m1.62)
+  hs c1~c1b                  steps=  36 top1=1.0000 top5=1.0000 dlp p50=0.0000 p90=0.0000 max=0.0000 kl_mean=0.00e+00 kl_max=0.00e+00 flips=
+  greedy ids hs vs sgl: first difference at 9 of 36
+== chat5
+  c1 vs c1b: tokens part at None
+  noise sgl score~score2     steps= 128 top1=1.0000 top5=1.0000 dlp p50=0.0000 p90=0.0000 max=0.0000 kl_mean=0.00e+00 kl_max=0.00e+00 flips=
+  noise sgl dec~score_dec    steps= 128 top1=0.9453 top5=0.9391 dlp p50=0.7442 p90=1.5000 max=2.8752 kl_mean=8.75e-03 kl_max=1.28e-01 flips=22(m0.12),43(m0.25),97(m0.00),105(m0.00),116(m0.25),117(m0.25),121(m0.00)
+  hs c1~sgl                  steps= 128 top1=0.9766 top5=0.9484 dlp p50=0.8566 p90=1.5606 max=3.0490 kl_mean=1.16e-02 kl_max=1.33e-01 flips=13(m0.00),20(m0.00),96(m0.50)
+  hs c1b~sgl                 steps= 128 top1=0.9766 top5=0.9484 dlp p50=0.8566 p90=1.5606 max=3.0490 kl_mean=1.16e-02 kl_max=1.33e-01 flips=13(m0.00),20(m0.00),96(m0.50)
+  hs c1~c1b                  steps= 128 top1=1.0000 top5=1.0000 dlp p50=0.0000 p90=0.0000 max=0.0000 kl_mean=0.00e+00 kl_max=0.00e+00 flips=
+  greedy ids hs vs sgl: first difference at 13 of 128
+== chat6
+  c1 vs c1b: tokens part at None
+  noise sgl score~score2     steps= 128 top1=1.0000 top5=1.0000 dlp p50=0.0000 p90=0.0000 max=0.0000 kl_mean=0.00e+00 kl_max=0.00e+00 flips=
+  noise sgl dec~score_dec    steps= 128 top1=0.9922 top5=0.9266 dlp p50=1.0000 p90=1.9979 max=3.1250 kl_mean=6.85e-03 kl_max=1.95e-01 flips=77(m0.00)
+  hs c1~sgl                  steps= 128 top1=0.9688 top5=0.9266 dlp p50=1.1626 p90=2.3126 max=5.2429 kl_mean=2.34e-02 kl_max=6.62e-01 flips=27(m1.75),40(m0.00),51(m1.50),116(m1.75)
+  hs c1b~sgl                 steps= 128 top1=0.9688 top5=0.9266 dlp p50=1.1626 p90=2.3126 max=5.2429 kl_mean=2.34e-02 kl_max=6.62e-01 flips=27(m1.75),40(m0.00),51(m1.50),116(m1.75)
+  hs c1~c1b                  steps= 128 top1=1.0000 top5=1.0000 dlp p50=0.0000 p90=0.0000 max=0.0000 kl_mean=0.00e+00 kl_max=0.00e+00 flips=
+  greedy ids hs vs sgl: first difference at 14 of 128
+== chat7
+  c1 vs c1b: tokens part at None
+  noise sgl score~score2     steps=  81 top1=1.0000 top5=1.0000 dlp p50=0.0000 p90=0.0000 max=0.0000 kl_mean=0.00e+00 kl_max=0.00e+00 flips=
+  noise sgl dec~score_dec    steps=  77 top1=0.9351 top5=0.9351 dlp p50=1.4680 p90=2.4986 max=3.9468 kl_mean=4.21e-02 kl_max=1.30e+00 flips=0(m3.25),18(m0.50),30(m1.25),58(m1.00),67(m0.50)
+  hs c1~sgl                  steps=  81 top1=0.9136 top5=0.9481 dlp p50=1.5668 p90=2.8448 max=4.1444 kl_mean=5.86e-02 kl_max=1.18e+00 flips=0(m1.25),2(m3.00),6(m1.00),47(m1.75),65(m0.75),67(m1.00),71(m0.75)
+  hs c1b~sgl                 steps=  81 top1=0.9136 top5=0.9481 dlp p50=1.5668 p90=2.8448 max=4.1444 kl_mean=5.86e-02 kl_max=1.18e+00 flips=0(m1.25),2(m3.00),6(m1.00),47(m1.75),65(m0.75),67(m1.00),71(m0.75)
+  hs c1~c1b                  steps=  81 top1=1.0000 top5=1.0000 dlp p50=0.0000 p90=0.0000 max=0.0000 kl_mean=0.00e+00 kl_max=0.00e+00 flips=
+  greedy ids hs vs sgl: first difference at 2 of 81
+== chat8
+  c1 vs c1b: tokens part at None
+  noise sgl score~score2     steps= 128 top1=1.0000 top5=1.0000 dlp p50=0.0000 p90=0.0000 max=0.0000 kl_mean=0.00e+00 kl_max=0.00e+00 flips=
+  noise sgl dec~score_dec    steps= 128 top1=1.0000 top5=0.9547 dlp p50=0.5625 p90=1.0000 max=2.3125 kl_mean=2.76e-03 kl_max=7.27e-02 flips=
+  hs c1~sgl                  steps= 128 top1=1.0000 top5=0.9297 dlp p50=0.7501 p90=1.3631 max=2.6894 kl_mean=6.48e-03 kl_max=2.03e-01 flips=
+  hs c1b~sgl                 steps= 128 top1=1.0000 top5=0.9297 dlp p50=0.7501 p90=1.3631 max=2.6894 kl_mean=6.48e-03 kl_max=2.03e-01 flips=
+  hs c1~c1b                  steps= 128 top1=1.0000 top5=1.0000 dlp p50=0.0000 p90=0.0000 max=0.0000 kl_mean=0.00e+00 kl_max=0.00e+00 flips=
+  greedy ids hs vs sgl: first difference at None of 128
+== chat9
+  c1 vs c1b: tokens part at None
+  noise sgl score~score2     steps= 128 top1=1.0000 top5=1.0000 dlp p50=0.0000 p90=0.0000 max=0.0000 kl_mean=0.00e+00 kl_max=0.00e+00 flips=
+  noise sgl dec~score_dec    steps= 128 top1=0.9844 top5=0.9500 dlp p50=0.6250 p90=1.6250 max=2.5001 kl_mean=4.02e-03 kl_max=6.73e-02 flips=42(m0.00),123(m0.50)
+  hs c1~sgl                  steps= 128 top1=0.9844 top5=0.9312 dlp p50=0.6010 p90=1.4443 max=2.3466 kl_mean=3.53e-03 kl_max=4.80e-02 flips=72(m0.00),100(m0.25)
+  hs c1b~sgl                 steps= 128 top1=0.9844 top5=0.9312 dlp p50=0.6010 p90=1.4443 max=2.3466 kl_mean=3.53e-03 kl_max=4.80e-02 flips=72(m0.00),100(m0.25)
+  hs c1~c1b                  steps= 128 top1=1.0000 top5=1.0000 dlp p50=0.0000 p90=0.0000 max=0.0000 kl_mean=0.00e+00 kl_max=0.00e+00 flips=
+  greedy ids hs vs sgl: first difference at 1 of 128
+== raw0
+  c1 vs c1b: tokens part at None
+  noise sgl score~score2     steps=  86 top1=1.0000 top5=1.0000 dlp p50=0.0000 p90=0.0000 max=0.0000 kl_mean=0.00e+00 kl_max=0.00e+00 flips=
+  noise sgl dec~score_dec    steps=  86 top1=0.9535 top5=0.9651 dlp p50=0.3749 p90=0.8628 max=1.0383 kl_mean=9.62e-03 kl_max=7.92e-02 flips=0(m0.00),14(m0.25),55(m0.25),75(m0.12)
+  hs c1~sgl                  steps=  86 top1=0.9767 top5=0.9419 dlp p50=0.3634 p90=0.7576 max=1.2691 kl_mean=4.13e-03 kl_max=5.87e-02 flips=5(m0.00),83(m0.25)
+  hs c1b~sgl                 steps=  86 top1=0.9767 top5=0.9419 dlp p50=0.3634 p90=0.7576 max=1.2691 kl_mean=4.13e-03 kl_max=5.87e-02 flips=5(m0.00),83(m0.25)
+  hs c1~c1b                  steps=  86 top1=1.0000 top5=1.0000 dlp p50=0.0000 p90=0.0000 max=0.0000 kl_mean=0.00e+00 kl_max=0.00e+00 flips=
+  greedy ids hs vs sgl: first difference at 5 of 86
+== raw1
+  c1 vs c1b: tokens part at None
+  noise sgl score~score2     steps= 100 top1=1.0000 top5=1.0000 dlp p50=0.0000 p90=0.0000 max=0.0000 kl_mean=0.00e+00 kl_max=0.00e+00 flips=
+  noise sgl dec~score_dec    steps= 100 top1=1.0000 top5=0.9480 dlp p50=0.3743 p90=0.8749 max=1.3125 kl_mean=6.52e-04 kl_max=1.65e-02 flips=
+  hs c1~sgl                  steps= 100 top1=1.0000 top5=0.9440 dlp p50=0.3823 p90=0.7652 max=1.4629 kl_mean=7.32e-04 kl_max=2.00e-02 flips=
+  hs c1b~sgl                 steps= 100 top1=1.0000 top5=0.9440 dlp p50=0.3823 p90=0.7652 max=1.4629 kl_mean=7.32e-04 kl_max=2.00e-02 flips=
+  hs c1~c1b                  steps= 100 top1=1.0000 top5=1.0000 dlp p50=0.0000 p90=0.0000 max=0.0000 kl_mean=0.00e+00 kl_max=0.00e+00 flips=
+  greedy ids hs vs sgl: first difference at None of 100
+== long0
+  c1 vs c1b: tokens part at None
+  noise sgl score~score2     steps= 128 top1=0.9922 top5=0.9719 dlp p50=0.2585 p90=0.7498 max=2.1250 kl_mean=1.30e-03 kl_max=2.32e-02 flips=104(m0.00)
+  noise sgl dec~score_dec    steps= 128 top1=0.9922 top5=0.9172 dlp p50=0.6250 p90=1.6250 max=4.0000 kl_mean=8.51e-03 kl_max=1.50e-01 flips=6(m0.00)
+  hs c1~sgl                  steps= 128 top1=0.9844 top5=0.9000 dlp p50=0.8943 p90=2.2359 max=3.5844 kl_mean=1.12e-02 kl_max=2.56e-01 flips=6(m0.25),104(m0.00)
+  hs c1b~sgl                 steps= 128 top1=0.9844 top5=0.9141 dlp p50=0.8777 p90=1.9713 max=4.0344 kl_mean=1.33e-02 kl_max=2.85e-01 flips=6(m0.25),104(m0.00)
+  hs c1~c1b                  steps= 128 top1=1.0000 top5=0.9187 dlp p50=0.5072 p90=1.1225 max=3.8485 kl_mean=2.97e-03 kl_max=2.85e-02 flips=
+  greedy ids hs vs sgl: first difference at 6 of 128
+== long1
+  c1 vs c1b: tokens part at 63
+  noise sgl score~score2     steps= 128 top1=0.9922 top5=0.9656 dlp p50=0.2806 p90=0.6167 max=1.3750 kl_mean=2.12e-03 kl_max=4.26e-02 flips=63(m0.25)
+  noise sgl dec~score_dec    steps= 128 top1=0.9453 top5=0.9312 dlp p50=0.6558 p90=1.3750 max=3.6250 kl_mean=1.13e-02 kl_max=3.00e-01 flips=0(m0.62),24(m0.12),42(m0.12),51(m0.50),67(m0.50),92(m0.37),108(m0.50)
+  hs c1~sgl                  steps= 128 top1=0.9609 top5=0.9203 dlp p50=0.8713 p90=2.0875 max=8.3231 kl_mean=1.84e-02 kl_max=6.96e-01 flips=0(m0.50),6(m0.75),59(m0.12),63(m0.25),70(m0.38)
+  hs c1b~sgl                 steps=  64 top1=0.9531 top5=0.9344 dlp p50=0.8440 p90=1.7995 max=2.8737 kl_mean=3.03e-02 kl_max=6.96e-01 flips=0(m0.50),6(m0.75),59(m0.12)
+  hs c1~c1b                  steps=  64 top1=0.9844 top5=0.9781 dlp p50=0.4984 p90=0.8313 max=1.9390 kl_mean=6.00e-03 kl_max=7.09e-02 flips=63(m0.17)
+  greedy ids hs vs sgl: first difference at 6 of 128
+== long2
+  c1 vs c1b: tokens part at 84
+  noise sgl score~score2     steps= 128 top1=0.9844 top5=0.9609 dlp p50=0.3498 p90=0.7500 max=1.3750 kl_mean=1.79e-03 kl_max=3.70e-02 flips=28(m0.00),84(m0.00)
+  noise sgl dec~score_dec    steps= 128 top1=0.9766 top5=0.9437 dlp p50=0.4952 p90=0.9996 max=2.1440 kl_mean=7.83e-03 kl_max=8.87e-02 flips=11(m0.50),84(m0.38),118(m0.25)
+  hs c1~sgl                  steps= 128 top1=0.9688 top5=0.9125 dlp p50=0.8940 p90=1.9499 max=3.6359 kl_mean=1.31e-02 kl_max=2.69e-01 flips=9(m1.12),28(m0.00),88(m0.50),107(m0.25)
+  hs c1b~sgl                 steps=  85 top1=0.9647 top5=0.8847 dlp p50=0.8845 p90=1.9141 max=3.5043 kl_mean=9.34e-03 kl_max=2.62e-01 flips=9(m1.12),28(m0.00),84(m0.00)
+  hs c1~c1b                  steps=  85 top1=0.9882 top5=0.9129 dlp p50=0.6623 p90=1.4340 max=2.4379 kl_mean=4.65e-03 kl_max=1.87e-01 flips=84(m0.39)
+  greedy ids hs vs sgl: first difference at 9 of 128
+== ALL
+  noise sgl score~score2     steps=1638 top1=0.9976 top5=0.9921 dlp p50=0.0000 p90=0.3645 max=2.1250 kl_mean=4.07e-04 kl_max=4.26e-02 flips=104(m0.00),63(m0.25),28(m0.00),84(m0.00)
+  noise sgl dec~score_dec    steps=1633 top1=0.9737 top5=0.9415 dlp p50=0.6440 p90=1.6250 max=4.4999 kl_mean=1.31e-02 kl_max=2.30e+00 flips=34(m0.50),67(m0.25),69(m0.25),83(m0.50),92(m2.50),117(m2.00),123(m2.50),60(m0.25)...
+  hs c1~sgl                  steps=1638 top1=0.9756 top5=0.9303 dlp p50=0.8041 p90=1.9177 max=8.3231 kl_mean=1.47e-02 kl_max=1.18e+00 flips=16(m0.50),20(m1.25),68(m0.25),73(m1.25),15(m0.50),19(m0.25),62(m0.00),63(m0.00)...
+  hs c1b~sgl                 steps=1420 top1=0.9761 top5=0.9317 dlp p50=0.7744 p90=1.8127 max=5.2429 kl_mean=1.29e-02 kl_max=1.18e+00 flips=16(m0.50),15(m0.50),19(m0.25),62(m0.00),63(m0.00),106(m0.00),2(m0.75),9(m1.62)...
+  hs c1~c1b                  steps=1420 top1=0.9979 top5=0.9859 dlp p50=0.0000 p90=0.5583 max=3.8485 kl_mean=1.04e-03 kl_max=3.04e-01 flips=16(m0.42),63(m0.17),84(m0.39)
+  hs c1~sgl: 40 top1 flips, 17 of them with an SGLang margin > 0.5 nats (not a near tie)
+  hs c1b~sgl: 34 top1 flips, 15 of them with an SGLang margin > 0.5 nats (not a near tie)

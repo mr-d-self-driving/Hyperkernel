@@ -1,0 +1,96 @@
+[
+ {
+  "mode": "thinking",
+  "completion": "The user wants the weather in Beijing. I should call get_weather.</think>\n\n<｜DSML｜ calls>\n<｜DSML｜ invoke name=\"get_weather\">\n<｜DSML｜ parameter name=\"location\" string=\"true\">Beijing</｜DSML｜ parameter>\n<｜DSML｜ parameter name=\"unit\" string=\"true\">celsius</｜DSML｜ parameter>\n</｜DSML｜ invoke>\n</｜DSML｜ calls>",
+  "content": "",
+  "reasoning_content": "The user wants the weather in Beijing. I should call get_weather.",
+  "tool_calls": [
+   {
+    "name": "get_weather",
+    "arguments": "{\"location\": \"Beijing\", \"unit\": \"celsius\"}"
+   }
+  ]
+ },
+ {
+  "mode": "thinking",
+  "completion": "Got the weather data. Let me format a nice response.</think>The weather in Beijing is currently sunny with a temperature of 22°C and 45% humidity.",
+  "content": "The weather in Beijing is currently sunny with a temperature of 22°C and 45% humidity.",
+  "reasoning_content": "Got the weather data. Let me format a nice response.",
+  "tool_calls": []
+ },
+ {
+  "mode": "chat",
+  "completion": "Hi there! How can I help you?",
+  "content": "Hi there! How can I help you?",
+  "reasoning_content": "",
+  "tool_calls": []
+ },
+ {
+  "mode": "chat",
+  "completion": "The capital of France is Paris.",
+  "content": "The capital of France is Paris.",
+  "reasoning_content": "",
+  "tool_calls": []
+ },
+ {
+  "mode": "chat",
+  "completion": "\n\n<｜DSML｜ calls>\n<｜DSML｜ invoke name=\"search\">\n<｜DSML｜ parameter name=\"queries\" string=\"true\">小柴胡冲剂 布洛芬 相互作用 一起吃</｜DSML｜ parameter>\n</｜DSML｜ invoke>\n</｜DSML｜ calls>",
+  "content": "",
+  "reasoning_content": "",
+  "tool_calls": [
+   {
+    "name": "search",
+    "arguments": "{\"queries\": \"小柴胡冲剂 布洛芬 相互作用 一起吃\"}"
+   }
+  ]
+ },
+ {
+  "mode": "chat",
+  "completion": "请及时就医。",
+  "content": "请及时就医。",
+  "reasoning_content": "",
+  "tool_calls": []
+ },
+ {
+  "mode": "chat",
+  "completion": "热海大滚锅在中国乃至全球的地热奇观中占有重要地位，但“世界著名”的称号更侧重于它作为独特的地质现象和旅游景点。",
+  "content": "热海大滚锅在中国乃至全球的地热奇观中占有重要地位，但“世界著名”的称号更侧重于它作为独特的地质现象和旅游景点。",
+  "reasoning_content": "",
+  "tool_calls": []
+ },
+ {
+  "mode": "thinking",
+  "completion": "  reason  </think>summary\n\n<｜DSML｜ calls>\n<｜DSML｜ invoke name=\"lookup\">\n<｜DSML｜ parameter name=\"query\" string=\"true\">value</｜DSML｜ parameter>\n<｜DSML｜ parameter name=\"limit\" string=\"false\">2</｜DSML｜ parameter>\n</｜DSML｜ invoke>\n</｜DSML｜ calls>",
+  "content": "summary",
+  "reasoning_content": "  reason  ",
+  "tool_calls": [
+   {
+    "name": "lookup",
+    "arguments": "{\"query\": \"value\", \"limit\": 2}"
+   }
+  ]
+ },
+ {
+  "mode": "chat",
+  "completion": "Let me check both.\n\n<｜DSML｜ calls>\n<｜DSML｜ invoke name=\"a\">\n<｜DSML｜ parameter name=\"q\" string=\"true\">line1\n\"quoted\" \\ é</｜DSML｜ parameter>\n<｜DSML｜ parameter name=\"opts\" string=\"false\">{\"deep\": [1, 2.5, null], \"on\": true}</｜DSML｜ parameter>\n</｜DSML｜ invoke>\n<｜DSML｜ invoke name=\"b\">\n</｜DSML｜ invoke>\n</｜DSML｜ calls>",
+  "content": "Let me check both.",
+  "reasoning_content": "",
+  "tool_calls": [
+   {
+    "name": "a",
+    "arguments": "{\"q\": \"line1\\n\\\"quoted\\\" \\\\ é\", \"opts\": {\"deep\": [1, 2.5, null], \"on\": true}}"
+   },
+   {
+    "name": "b",
+    "arguments": "{}"
+   }
+  ]
+ },
+ {
+  "mode": "chat",
+  "completion": "Plain answer, no tools.",
+  "content": "Plain answer, no tools.",
+  "reasoning_content": "",
+  "tool_calls": []
+ }
+]

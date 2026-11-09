@@ -1,0 +1,101 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+root=$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)
+h=${DSV41_HOME:-$root/.dsv41}
+name=deepseek-v4.1-flash
+
+die() { echo "dsv41: $*" >&2; exit 1; }
+say() { echo "dsv41: $*"; }
+
+preset_conc() { case $1 in c1) echo 1 ;; c2) echo 2 ;; c4) echo 4 ;; c5) echo 5 ;; c6) echo 6 ;; c7) echo 7 ;; c8) echo 8 ;; *) die "unknown preset '$1' (c1, c2, c4, c5, c6, c7, c8)" ;; esac; }
+
+toolchain_env() {
+  export RUSTUP_HOME=${RUSTUP_HOME:-$h/rustup} CARGO_HOME=${CARGO_HOME:-$h/cargo}
+  export PATH="$CARGO_HOME/bin:$PATH"
+}
+
+venv_install() {
+  local d=$1; shift
+  [ -x "$d/bin/python" ] || python3 -m venv "$d" || die "python3 -m venv failed: install the python3 venv package"
+  "$d/bin/pip" install -q "$@"
+}
+
+cmd_setup() {
+  mkdir -p "$h"; toolchain_env
+  command -v python3 >/dev/null || die "python3 is required"
+  command -v curl >/dev/null || die "curl is required"
+  if ! command -v cargo >/dev/null; then
+    say "installing rustup into $h (toolchain from rust-toolchain.toml)"
+    curl -fsSL -o "$h/rustup-init.sh" https://sh.rustup.rs
+    sh "$h/rustup-init.sh" -y --no-modify-path --default-toolchain none --profile minimal
+  fi
+  (cd "$root" && cargo --version)
+  venv_install "$h/bench" "agentx-harness==1.0.11"
+  say "setup done: cargo $(cd "$root" && cargo --version | awk '{print $2}')"
+}
+
+cmd_build() {
+  toolchain_env; command -v cargo >/dev/null || die "no cargo: run 'dsv41 setup' first"
+  (cd "$root" && cargo build --release)
+  say "built $root/target/release/hyperserve"
+}
+
+parse() {
+  preset=""; model=""; kernels=""; gpus=0,1,2,3; port=8000; dur=3600; dry=0
+  while [ $# -gt 0 ]; do
+    case $1 in
+      --preset) preset=$2; shift 2 ;; --model) model=$2; shift 2 ;; --kernels) kernels=$2; shift 2 ;; --gpus) gpus=$2; shift 2 ;;
+      --port) port=$2; shift 2 ;; --duration) dur=$2; shift 2 ;; --dry-run) dry=1; shift ;;
+      *) die "unknown argument '$1'" ;;
+    esac
+  done
+}
+
+cmd_serve() {
+  parse "$@"; [ -n "$preset" ] || die "--preset c1|c2|c4|c5|c6|c7|c8 is required"; [ -n "$model" ] || die "--model DIR is required"
+  local bin n; bin=$root/target/release/hyperserve
+  [ -s "$model/tokenizer.json" ] || die "$model has no tokenizer.json (the Hugging Face DeepSeek-V4.1-Flash directory)"
+  ls "$model"/*.safetensors >/dev/null 2>&1 || die "$model has no *.safetensors"
+  n=$(echo "$gpus" | tr ',' '\n' | grep -c .); [ "$n" = 4 ] || die "--gpus must name 4 GPUs (TP4), got '$gpus'"
+  mkdir -p "$h/logs" "$h/tmp"
+  local cmd=(env -i PATH="/usr/bin:/bin" HOME="$h" TMPDIR="$h/tmp" RUST_BACKTRACE=1 CUDA_VISIBLE_DEVICES="$gpus"
+             "$bin" llm --model "$name" --preset "$preset" ${kernels:+--kernels "$kernels"} --weights "$model" --port "$port")
+  if [ $dry = 1 ]; then printf '%q ' "${cmd[@]}"; echo; return 0; fi
+  [ -x "$bin" ] || die "no $bin: run 'dsv41 build' first"
+  command -v nvidia-smi >/dev/null || die "no nvidia-smi (NVIDIA driver)"
+  local busy; busy=$(nvidia-smi --query-gpu=index,memory.used --format=csv,noheader,nounits | awk -F', ' -v g=",$gpus," 'index(g, ","$1",") && $2 > 2000' | wc -l)
+  [ "$busy" = 0 ] || die "$busy of GPUs $gpus already hold memory (> 2 GB); the server needs them free"
+  local names drv; names=$(nvidia-smi --query-gpu=index,name --format=csv,noheader | awk -F', ' -v g=",$gpus," 'index(g, ","$1",") {print $2}' | sort -u | tr '\n' ';')
+  case $names in *B300*) ;; *) die "GPUs $gpus are '$names': the kernels target NVIDIA B300 (sm_103a) only" ;; esac
+  drv=$(nvidia-smi --query-gpu=driver_version --format=csv,noheader | head -1)
+  [ "${drv%%.*}" -ge 580 ] 2>/dev/null || die "driver $drv: needs R580 or newer (CUDA 13.0; measured on 595.71.05)"
+  say "preflight: $names driver $drv, host RAM $(awk '/MemTotal/{printf "%.0f GB", $2/1e6}' /proc/meminfo) total / $(awk '/MemAvailable/{printf "%.0f GB", $2/1e6}' /proc/meminfo) available"
+  ulimit -n "$(ulimit -Hn)" 2>/dev/null || true
+  local log=$h/logs/serve-$preset-$(date -u +%Y%m%dT%H%M%SZ).log
+  say "starting preset $preset on GPUs $gpus, port $port (log $log)"
+  cd "$h/tmp" && "${cmd[@]}" 2>&1 | tee "$log"
+}
+
+cmd_bench() {
+  parse "$@"; [ -n "$preset" ] || die "--preset is required"; [ -n "$model" ] || die "--model DIR is required"
+  local conc out py; conc=$(preset_conc "$preset"); py=$h/bench/bin/python
+  [ -x "$py" ] || die "no client: run 'dsv41 setup' first"
+  curl -sf -m 10 "localhost:$port/v1/models" >/dev/null || die "no server on port $port: start 'dsv41 serve --preset $preset' first"
+  say "prefix cache reset: $(curl -s -m 660 -o /dev/null -w '%{http_code}' -X POST "localhost:$port/reset_prefix_cache")"
+  out=$h/runs/$preset-c$conc-${dur}s-$(date -u +%Y%m%dT%H%M%SZ); mkdir -p "$out"
+  say "AgentX C$conc, $dur s, uncapped trace -> $out"
+  AIPERF_REQUIRED_SERVER_METRIC_PREFIX="vllm:" AIPERF_HTTP_TCP_USER_TIMEOUT=900000 \
+    "$h/bench/bin/agentx" profile --url "http://127.0.0.1:$port" --model "$name" --tokenizer "$model" --tokenizer-trust-remote-code \
+      --concurrency "$conc" --benchmark-duration "$dur" --warmup-requests-per-lane 1 --server-metrics "http://127.0.0.1:$port/metrics" \
+      --output-artifact-dir "$out/aiperf_artifacts" --public-dataset semianalysis_cc_traces_weka_062126 2>&1 | tee "$out/client.log"
+  "$py" -I "$root/scripts/dsv41/agentic_summary.py" "$out/aiperf_artifacts/profile_export_aiperf.json" "$conc" 4 | tee "$out/summary.txt"
+}
+
+cmd_presets() { for p in c1 c2 c4 c5 c6 c7 c8; do printf '%-8s C%s\n' "$p" "$(preset_conc $p)"; done; }
+
+case ${1:-} in
+  setup) shift; cmd_setup "$@" ;; build) shift; cmd_build "$@" ;; serve) shift; cmd_serve "$@" ;;
+  bench) shift; cmd_bench "$@" ;; presets) cmd_presets ;;
+  *) echo "usage: dsv41 setup | build | presets | serve|bench --preset c1|c2|c4|c5|c6|c7|c8 --model DIR [--gpus 0,1,2,3] [--port 8000] [--kernels DIR] [--duration S] [--dry-run]" >&2; exit 2 ;;
+esac

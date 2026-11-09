@@ -1,0 +1,13 @@
+# fresh prefill (prefix cache reset), 2 runs a length; first-token KL vs SGLang
+L=  300 distinct=1 KL=0.00 0.00 ok
+L=  700 distinct=1 KL=0.18 0.18 ok
+L=  767 distinct=1 KL=0.02 0.02 ok
+L=  768 distinct=1 KL=0.00 0.00 ok
+L=  769 distinct=1 KL=0.32 0.32 ok
+L= 1000 distinct=1 KL=0.01 0.01 ok
+L= 1500 distinct=1 KL=0.05 0.05 ok
+L= 2048 distinct=1 KL=0.02 0.02 ok
+L= 2049 distinct=1 KL=0.14 0.14 ok
+L= 2304 distinct=1 KL=0.17 0.17 ok
+L= 2816 distinct=1 KL=0.01 0.01 ok
+VERDICT CLEAN (bad lengths in 768..2048: 0)
